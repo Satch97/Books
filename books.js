@@ -82,14 +82,27 @@ function getListButton(){
 
 
 function printCategories(ajax) {
-  var categories = ajax.responseXML.getElementsByTagName("category");
-  for (let i = 0; i < categories.length; i++) {
-    category = categories[i].firstChild.nodeValue;
-    radio = getRadioButton(category);
-    label = getLabel(category);
-    $("controls").appendChild(radio);
-    $("controls").appendChild(label);
+  if (window.format == "XML") {
+    var categories = ajax.responseXML.getElementsByTagName("category");
+    for (let i = 0; i < categories.length; i++) {
+      category = categories[i].firstChild.nodeValue;
+      radio = getRadioButton(category);
+      label = getLabel(category);
+      $("controls").appendChild(radio);
+      $("controls").appendChild(label);
+    }
   }
+  else if (window.format == "JSON") {
+    var json = ajax.responseText.evalJSON();
+    for (let i = 0; i < json.length; i++) {
+      category = json[i]["category"];
+      radio = getRadioButton(category);
+      label = getLabel(category);
+      $("controls").appendChild(radio);
+      $("controls").appendChild(label);
+    }
+  }
+
 
     button = getListButton();
     $("controls").appendChild(button);
