@@ -7,6 +7,22 @@ function getRadioButton(category_name) {
 }
 
 
+function getLabel(label_name) {
+  var label = document.createElement("label");
+  label.innerHTML = label_name;
+  return label;
+}
+
+
+function getListButton(){
+  var button = document.createElement("input");
+  button.type = "button";
+  button.value = "List Books";
+  button.onclick = listBooks;
+  return button;
+}
+
+
 function printCategories(ajax) {
   var categories = ajax.responseXML.getElementsByTagName("category");
   for (let i = 0; i < categories.length; i++) {
