@@ -1,6 +1,16 @@
 function printBooks(ajax) {
-
+  var books = ajax.responseXML.getElementsByTagName("book");
+  var dict = {};
+  clearList();
+  for (let i = 0; i < books.length; i++) {
+    dict["bookname"] = books[i].getElementsByTagName("name")[0].firstChild.nodeValue;
+    dict["author"] = books[i].getElementsByTagName("author")[0].firstChild.nodeValue;
+    dict["year"] = books[i].getElementsByTagName("year")[0].firstChild.nodeValue;
+    li = getListElem(dict);
+    $("booklist").appendChild(li);
+  }
 }
+
 
 function generateBooks(categ) {
   new Ajax.Request('http://10.26.104.41/Books/booklist.php', {
@@ -12,11 +22,13 @@ function generateBooks(categ) {
 
 }
 
+
 function getBooks(){
   var radios = document.getElementsByName('category');
 
   for (var i = 0, length = radios.length; i < length; i++) {
     if (radios[i].checked) {
+      updateListlabel(radios[i].value);
       generateBooks(radios[i].value);
       break;
     }
