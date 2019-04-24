@@ -1,3 +1,14 @@
+function  getListElem(book) {
+  var elem = document.createElement("li");
+  elem.innerHTML = book["bookname"] + ",  by " + book["author"] + " (" + book["year"] + ')';
+  return elem;
+}
+
+
+function updateListlabel(category) {
+  $("listlabel").innerHTML = 'Books in category "' + category + '"';
+}
+
 function printBooks(ajax) {
   var books = ajax.responseXML.getElementsByTagName("book");
   var dict = {};
