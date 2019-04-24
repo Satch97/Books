@@ -41,6 +41,17 @@
                           JOIN book b
                           ON c.cat_id = b.cat_id
                           WHERE c.cat_name = $categ_name");
+     $xmlresponse .= "<books>\n";
+
+     header("Content-type: text/xml; charset=utf-8");
+
+     foreach ($books as $book) {
+        $xmlresponse .= "<book>";
+
+        $xmlresponse .= "</book>\n";
+     }
+
+
   } catch (PDOException $ex) {
   }
 
