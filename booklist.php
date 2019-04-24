@@ -72,6 +72,9 @@
 
   }
 
+  $xmlresponse .= "</books>\n";
+  echo($xmlresponse);
+
   exit;
 }
 
