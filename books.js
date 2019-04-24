@@ -9,6 +9,15 @@ function updateListlabel(category) {
   $("listlabel").innerHTML = 'Books in category "' + category + '"';
 }
 
+
+function clearList() {
+  var listnode = $("booklist");
+  var children = listnode.childElements();
+  for (var i = 0; i < children.length; i++) {
+    $("booklist").removeChild(children[i]);
+  }
+}
+
 function printBooks(ajax) {
   var books = ajax.responseXML.getElementsByTagName("book");
   var dict = {};
