@@ -19,16 +19,30 @@ function clearList() {
 }
 
 function printBooks(ajax) {
-  var books = ajax.responseXML.getElementsByTagName("book");
-  var dict = {};
-  clearList();
-  for (let i = 0; i < books.length; i++) {
-    dict["bookname"] = books[i].getElementsByTagName("name")[0].firstChild.nodeValue;
-    dict["author"] = books[i].getElementsByTagName("author")[0].firstChild.nodeValue;
-    dict["year"] = books[i].getElementsByTagName("year")[0].firstChild.nodeValue;
-    li = getListElem(dict);
-    $("booklist").appendChild(li);
+  if(window.format == "XML") {
+    var books = ajax.responseXML.getElementsByTagName("book");
+    var dict = {};
+    clearList();
+    for (let i = 0; i < books.length; i++) {
+      dict["bookname"] = books[i].getElementsByTagName("name")[0].firstChild.nodeValue;
+      dict["author"] = books[i].getElementsByTagName("author")[0].firstChild.nodeValue;
+      dict["year"] = books[i].getElementsByTagName("year")[0].firstChild.nodeValue;
+      li = getListElem(dict);
+      $("booklist").appendChild(li);
+    }
+  } else if (window.format == "JSON") {
+    var json = ajax.responseText.evalJSON();
+    var dict = {};
+    clearList();
+    for (let i = 0; i < json.length; i++) {
+      dict["bookname"] = json[i]["name"];
+      dict["author"] = json[i]["author"];
+      dict["year"] = json[i]["year"];
+      li = getListElem(dict);
+      $("booklist").appendChild(li);
+    }
   }
+
 }
 
 
@@ -36,7 +50,8 @@ function generateBooks(categ) {
   new Ajax.Request('http://10.26.104.41/Books/booklist.php', {
     method: 'get',
     parameters: { booklist: 'all',
-                  category : categ},
+                  category : categ,
+                  format : window.format},
     onSuccess: printBooks
   });
 
