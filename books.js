@@ -1,11 +1,12 @@
 function printBooks(ajax) {
-  
+
 }
 
 function generateBooks(categ) {
   new Ajax.Request('http://10.26.104.41/Books/booklist.php', {
     method: 'get',
-    parameters: {booklist: all},
+    parameters: { booklist: 'all',
+                  category : categ},
     onSuccess: printBooks
   });
 
