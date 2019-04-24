@@ -11,8 +11,11 @@
 
 <body>
 
-    <div id = "controls" name = "planning area"></div>
-    <div id = "booklist" name =""></div>
+    <div id = "controls"></div>
+    <label id = "listlabel"></label>
+    <div id = "books">
+      <ul id = "booklist"></ul>
+    </div>
 
 </body>
 
