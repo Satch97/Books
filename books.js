@@ -1,3 +1,15 @@
+function getBooks(){
+  var radios = document.getElementsByName('category');
+
+  for (var i = 0, length = radios.length; i < length; i++) {
+    if (radios[i].checked) {
+      generateBooks(radios[i].value);
+      break;
+    }
+
+  }
+}
+
 function getRadioButton(category_name) {
   var radiobtn = document.createElement("input");
   radiobtn.type = "radio";
@@ -18,7 +30,7 @@ function getListButton(){
   var button = document.createElement("input");
   button.type = "button";
   button.value = "List Books";
-  button.onclick = listBooks;
+  button.onclick = getBooks;
   return button;
 }
 
