@@ -1,3 +1,12 @@
+function generateBooks(categ) {
+  new Ajax.Request('http://10.26.104.41/Books/booklist.php', {
+    method: 'get',
+    parameters: {booklist: all},
+    onSuccess: printBooks
+  });
+
+}
+
 function getBooks(){
   var radios = document.getElementsByName('category');
 
