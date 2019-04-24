@@ -97,9 +97,15 @@ function printCategories(ajax) {
 
 
 window.onload = function () {
+  if (window.location.search.substr(1) == "format=json") {
+    window.format = "JSON";
+  } else {
+    window.format = "XML";
+  }
   new Ajax.Request('http://10.26.104.41/Books/booklist.php', {
     method: 'get',
-    parameters: {categorylist: 'true'},
+    parameters: {categorylist: 'true', format: window.format},
     onSuccess: printCategories
   });
+
 };
