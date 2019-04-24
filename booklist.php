@@ -65,6 +65,11 @@
 
 
   } catch (PDOException $ex) {
+
+        echo ("failed request");
+        echo ("Sorry, a database error occurred. Please try again later.</p>
+              <p>(Error details: <?= $ex->getMessage() ?>)");
+
   }
 
   exit;
