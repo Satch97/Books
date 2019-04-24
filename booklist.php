@@ -31,6 +31,19 @@
 
   $categ_name = $_GET["category"];
 
+  try {
+     $db = new PDO('mysql:dbname=booksdb;host=localhost', 'reader', 'bookworm');
+     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+     $categ_name = $_GET['category'];
+     $categ_name = $db->quote($categ_name);
+     $books = $db->query("SELECT book_name, book_author, year
+                          FROM category c
+                          JOIN book b
+                          ON c.cat_id = b.cat_id
+                          WHERE c.cat_name = $categ_name");
+  } catch (PDOException $ex) {
+  }
+
   exit;
 }
 
