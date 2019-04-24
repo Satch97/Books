@@ -48,6 +48,18 @@
      foreach ($books as $book) {
         $xmlresponse .= "<book>";
 
+        $xmlresponse .= "<name>";
+        $xmlresponse .= $book["book_name"];
+        $xmlresponse .= "</name>\n";
+
+        $xmlresponse .= "<author>";
+        $xmlresponse .= $book["book_author"];
+        $xmlresponse .= "</author>\n";
+
+        $xmlresponse .= "<year>";
+        $xmlresponse .= $book["year"];
+        $xmlresponse .= "</year>\n";
+
         $xmlresponse .= "</book>\n";
      }
 
