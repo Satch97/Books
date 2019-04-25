@@ -41,9 +41,13 @@
                           JOIN book b
                           ON c.cat_id = b.cat_id
                           WHERE c.cat_name = $categ_name");
+
+
+
+     $json_data=array();
      $xmlresponse .= "<books>\n";
 
-     header("Content-type: text/xml; charset=utf-8");
+    header("Content-type: text/xml; charset=utf-8");
 
      foreach ($books as $book) {
         $xmlresponse .= "<book>";
@@ -61,8 +65,12 @@
         $xmlresponse .= "</year>\n";
 
         $xmlresponse .= "</book>\n";
-     }
 
+        $json_array['name']=$book['book_name'];
+        $json_array['author']=$book['book_author'];
+        $json_array['year']=$book['year'];
+        array_push($json_data,$json_array);
+     }
 
   } catch (PDOException $ex) {
 
@@ -73,6 +81,11 @@
   }
 
   $xmlresponse .= "</books>\n";
+  if(isset($_GET['format']) && $_GET['format'] == "JSON") {
+    header('Content-Type: application/json');
+    echo json_encode($json_data);
+    exit;
+  }
   echo($xmlresponse);
 
   exit;
