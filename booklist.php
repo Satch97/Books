@@ -10,12 +10,16 @@
      $xmlresponse = "<?xml version='1.0' encoding='utf-8'?>\n";
      $xmlresponse .= "<categories>\n";
 
+     $json_data=array();
+
      header("Content-type: text/xml; charset=utf-8");
 
      foreach ($categories as $category) {
        $xmlresponse .= "<category>";
        $xmlresponse .= $category["cat_name"];
        $xmlresponse .= "</category>\n";
+       $json_array['category']=$category['cat_name'];
+       array_push($json_data,$json_array);
      }
 
   } catch (PDOException $ex) {
@@ -23,6 +27,11 @@
     echo ("failed request");
   }
   $xmlresponse .= "</categories>\n";
+  if(isset($_GET['format']) && $_GET['format'] == "JSON") {
+    header('Content-Type: application/json');
+    echo json_encode($json_data);
+    exit;
+  }
   echo($xmlresponse);
 
   exit;
