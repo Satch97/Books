@@ -6,7 +6,7 @@ function  getListElem(book) {
 
 
 function updateListlabel(category) {
-  $("listlabel").innerHTML = 'Books in category "' + category + '"';
+  $("listlabel").innerHTML = 'Books in category "' + category + '":';
 }
 
 

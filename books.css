@@ -1,0 +1,17 @@
+#controls { width: 50%; margin: 0 auto; }
+
+ul {
+  list-style: none;
+  padding: 0px;
+}
+li {
+  display: flex;
+}
+ul li:before {
+  content: '\2756';
+  margin: 0 1em;
+}
+
+/* ref:
+https://stackoverflow.com/questions/49581966/
+unicode-as-bullet-not-indenting-second-line */

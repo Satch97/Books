@@ -7,6 +7,7 @@
     <meta name="Books" content="">
     <script src="src/prototype.js"> </script>
     <script src="books.js"> </script>
+    <link rel="stylesheet" type="text/css" href="books.css">
 </head>
 
 <body>
